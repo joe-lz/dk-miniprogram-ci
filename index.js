@@ -37,17 +37,7 @@ async function run() {
 
     // 其他配置
     const context = {
-      compileOptions: {
-        "urlCheck": true,
-        "es6": true,
-        "enhance": false,
-        "compileHotReLoad": true,
-        "postcss": false,
-        "minified": true,
-        "condition": false,
-        "skylineRenderEnable": true,
-        "compileWorklet": true,
-      }, // 编译配置
+      compileOptions: {}, // 编译配置
       robot: core.getInput("robot") || 1, // 机器人编号
       threads: 1, // 线程数
       allowIgnoreUnusedFiles: false, // 允许忽略未使用的文件
@@ -63,10 +53,12 @@ async function run() {
       project,
       version,
       desc: description,
-      setting: context.compileOptions,
-      robot: context.robot,
-      threads: context.threads,
-      allowIgnoreUnusedFiles: context.allowIgnoreUnusedFiles,
+      setting: {
+        useProjectConfig: true,
+      },
+      // robot: context.robot,
+      // threads: context.threads,
+      // allowIgnoreUnusedFiles: context.allowIgnoreUnusedFiles,
       onProgressUpdate,
     });
   } catch (error) {
